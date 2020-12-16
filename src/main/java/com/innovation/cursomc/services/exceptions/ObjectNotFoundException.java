@@ -1,4 +1,4 @@
-package com.innovation.cursomc.eexceptions;
+package com.innovation.cursomc.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 

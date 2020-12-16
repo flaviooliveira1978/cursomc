@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.innovation.cursomc.domain.Categoria;
-import com.innovation.cursomc.eexceptions.ObjectNotFoundException;
 import com.innovation.cursomc.repositories.CategoriaRepository;
+import com.innovation.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -18,19 +18,11 @@ public class CategoriaService {
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		
-		if (obj ==null) {
-			throw new ObjectNotFoundException("Categoria não encontrada. Id: "+ id);
-
-		}
-		else { 
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+		 
 		
-		/*
-		 * return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
-		 */
-		
-		return obj.get(); 
-		}
 	}
+	
 	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
@@ -43,4 +35,9 @@ public class CategoriaService {
 	}
 	
 
+	public void delete(Integer id) {
+		find(id);
+		repo.deleteById(id);
+		
+	}
 }
