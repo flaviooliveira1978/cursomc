@@ -50,14 +50,10 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<?> update(@PathVariable Integer id) {
+	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		
-		try {
 		service.delete(id);
-		} catch (DataIntegrityViolationException e) 
-		{
-			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
-		}
+
 		return ResponseEntity.noContent().build();
 		
 	}
