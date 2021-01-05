@@ -72,13 +72,18 @@ public class CategoriaService {
 		
 		
 	}
+
+	
+	private void updateCategoria(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
+	}
+	
 	
 	public Categoria fromDTO (CategoriaDTO catDto){
 	
 		return new Categoria(catDto.getId(),catDto.getNome());
 	}
 	
-	private void updateCategoria(Categoria newObj, Categoria obj) {
-		newObj.setNome(obj.getNome());
-	}
+
+
 }
